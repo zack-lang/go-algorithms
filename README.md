@@ -10,7 +10,6 @@ This repository contains Golang implementations of various algorithms discussed 
 - 🧠 Code written in Golang for clarity and efficiency
 - 📝 Detailed comments explaining the algorithm logic
 - 📊 Visualization of algorithm steps for better understanding
-- ⚖️  Performance analysis comparing different algorithm implementations
 
 ## Folder Structure
 
