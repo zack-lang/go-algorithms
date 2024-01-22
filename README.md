@@ -1,4 +1,4 @@
-# [go-algorithms]: Algorithms in Golang
+# go-algorithms: Algorithms in Golang
 
 ## Description
 
