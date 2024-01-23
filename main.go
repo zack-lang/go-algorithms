@@ -7,13 +7,15 @@ import (
 )
 
 func main() {
-	sortedSlice := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	sortedSlice := []int{1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 10}
 
-	target := 1
-	result := searching.BinaryContains(sortedSlice, target)
-	if !result {
-		fmt.Printf("Target %d not found in %v\n", target, sortedSlice)
+	target := 11
+
+	index := searching.FirstOccurrence(sortedSlice, target)
+
+	if index != -1 {
+		fmt.Printf("First occurrence of %d is at index %d\n", target, index)
 	} else {
-		fmt.Printf("Target %d found in %v\n", target, sortedSlice)
+		fmt.Printf("%d is not in the slice.\n", target)
 	}
 }
