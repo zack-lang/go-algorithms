@@ -1,6 +1,17 @@
 package sorting
 
 /*
+"The important thing is not to stop questioning. Curiosity has its own reason for existing." - Albert Einstein
+Sorting is fundamental to many operations in computer science. When it comes to sorting algorithms, there many algorithms to choose from.
+Selection sort may not boast top-tier efficiency but performance isn't always a top priority either.
+Sometimes you just need a solution that is simple, elegant, and easy to implement.
+So why should you learn how to implement selection sort in Go?
+Two reasons stuck out for me:
+- Selection sort has its own place in the world of algorithms.
+- It is also a good starting point for understanding the other sorting algorithms.
+*/
+
+/*
 SelectionSort sorts an integer slice in ascending order using the Selection Sort algorithm.
 It iterates over the input slice, selecting the minimum element from the unsorted portion
 and placing it at the beginning of the sorted portion.
