@@ -8,7 +8,7 @@ Sometimes you just need a solution that is simple, elegant, and easy to implemen
 So why should you learn how to implement selection sort in Go?
 Two reasons stuck out for me:
 - Selection sort has its own place in the world of algorithms.
-- It is also a good starting point for understanding the other sorting algorithms.
+- It is also a good starting point for understanding other sorting algorithms.
 */
 
 /*

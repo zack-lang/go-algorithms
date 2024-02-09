@@ -6,20 +6,21 @@ import (
 	"github.com/google/go-cmp/cmp"
 )
 
-func Test_SelectionSort(t *testing.T) {
+func TestInsertionSort(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := SelectionSort(tc.slice)
+			actual := InsertionSort(tc.slice)
 			if !cmp.Equal(tc.expected, actual) {
 				t.Errorf(cmp.Diff(tc.expected, actual))
 			}
 		})
 	}
 }
-func Test_Bidirectional(t *testing.T) {
+
+func TestBinaryInsertionSort(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := Bidirectional(tc.slice)
+			actual := BinaryInsertionSort(tc.slice)
 			if !cmp.Equal(tc.expected, actual) {
 				t.Errorf(cmp.Diff(tc.expected, actual))
 			}
