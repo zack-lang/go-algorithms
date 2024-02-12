@@ -23,13 +23,13 @@ func SelectionSort(slice []int) []int {
 	n := len(slice)
 
 	for i := 0; i < n; i++ {
-		minIdx := i
+		min := i
 		for j := i + 1; j < n; j++ {
-			if slice[j] < slice[minIdx] {
-				minIdx = j
+			if slice[j] < slice[min] {
+				min = j
 			}
 		}
-		slice[i], slice[minIdx] = slice[minIdx], slice[i]
+		slice[i], slice[min] = slice[min], slice[i]
 	}
 
 	return slice
@@ -43,23 +43,32 @@ Time complexity: O(n^2), where n is the length of the slice.
 The algorithm iterates over the slice multiple times, with each iteration potentially requiring
 comparisons and swaps, resulting in quadratic time complexity.
 */
-func Bidirectional(slice []int) []int {
-	left := 0
-	right := len(slice) - 1
+func BidirectionalSelection(slice []int) []int {
+	left, right := 0, len(slice)-1
 
 	for left <= right {
+		swapped := false
+
+		// Forward pass
 		for i := left; i < right; i++ {
 			if slice[i] > slice[i+1] {
 				slice[i], slice[i+1] = slice[i+1], slice[i]
+				swapped = true
 			}
 		}
-		right--
+		// If no swaps occurred, the slice is already sorted.
+		if !swapped {
+			break
+		}
 
+		// Backward pass
 		for i := right; i > left; i-- {
 			if slice[i] < slice[i-1] {
 				slice[i], slice[i-1] = slice[i-1], slice[i]
 			}
 		}
+
+		right--
 		left++
 	}
 
