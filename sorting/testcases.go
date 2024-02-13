@@ -6,8 +6,9 @@ type testCase struct {
 	expected []int
 }
 
-var unsorted = []int{2, 5, 1, 3, 6, 10, 4, 8, 7, 9}
 var sorted = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+
+var random = []int{2, 5, 1, 3, 6, 10, 4, 8, 7, 9}
 var reversed = []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
 var repeated = []int{5, 5, 5, 2, 2, 4, 4, 2, 2, 4, 1, 1, 3}
 var empty = []int{}
@@ -20,8 +21,8 @@ var testCases = []testCase{
 		expected: empty,
 	},
 	{
-		name:     "Unsorted slice",
-		slice:    unsorted,
+		name:     "Random order slice",
+		slice:    random,
 		expected: sorted,
 	},
 	{
