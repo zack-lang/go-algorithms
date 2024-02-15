@@ -38,8 +38,8 @@ func merge(left, right []int) []int {
 		}
 	}
 	// Append any remaining elements
-	merged = append(merged, left[i:]...)
-	merged = append(merged, right[j:]...)
+	merged = append(merged, left[l:]...)
+	merged = append(merged, right[r:]...)
 	return merged
 }
 
