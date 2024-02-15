@@ -40,3 +40,39 @@ func merge(left, right []int) []int {
 	result = append(result, right[j:]...)
 	return result
 }
+
+/*
+	InPlaceMergeSort sorts an integer slice in ascending order using the in-place Merge Sort algorithm.
+	Time complexity: O(n log n), where n is the length of the slice.
+	The algorithm recursively divides the input slice into halves and merges them in place, resulting in logarithmic time complexity.
+*/
+
+func InPlaceMergeSort(slice []int) {
+	// Base case
+	if len(slice) <= 1 {
+		return // If the slice has 0 or 1 elements, it is already sorted
+	}
+	mid := len(slice) / 2
+	InPlaceMergeSort(slice[:mid])
+	InPlaceMergeSort(slice[mid:])
+	mergeInPlace(slice, 0, mid, len(slice))
+}
+
+func mergeInPlace(slice []int, left, mid, right int) {
+	temp := make([]int, right-left)
+	copy(temp, slice[left:right])
+
+	i, j := 0, mid-left
+	for k := left; k < right; k++ {
+		if i == mid-left { // If the left slice is exhausted
+			slice[k] = temp[j]
+			j++
+		} else if j == right-left || temp[i] <= temp[j] { // If the right slice is exhausted or the current element in the left slice is less than the current element in the right slice
+			slice[k] = temp[i]
+			i++
+		} else {
+			slice[k] = temp[j] // If the current element in the left slice is greater than the current element in the right slice
+			j++
+		}
+	}
+}

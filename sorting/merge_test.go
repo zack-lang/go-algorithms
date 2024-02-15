@@ -16,3 +16,15 @@ func TestMergeSort(t *testing.T) {
 		})
 	}
 }
+
+func TestInPlaceMergeSort(t *testing.T) {
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			InPlaceMergeSort(tc.slice)
+			actual := tc.slice
+			if !cmp.Equal(tc.expected, actual) {
+				t.Errorf(cmp.Diff(tc.expected, actual))
+			}
+		})
+	}
+}
