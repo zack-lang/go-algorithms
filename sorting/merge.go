@@ -1,5 +1,7 @@
 package sorting
 
+import "sync"
+
 /*
 MergeSort sorts an integer slice in ascending order using the Merge Sort algorithm.
 It divides the input slice into two halves, recursively sorts each half, and then merges the sorted halves.
@@ -23,22 +25,22 @@ func MergeSort(slice []int) []int {
 }
 
 func merge(left, right []int) []int {
-	result := make([]int, 0, len(left)+len(right))
-	i, j := 0, 0
+	merged := make([]int, 0, len(left)+len(right))
+	l, r := 0, 0
 	// Compare elements from both slices until one is exhausted
-	for i < len(left) && j < len(right) {
-		if left[i] <= right[j] {
-			result = append(result, left[i])
-			i++
+	for l < len(left) && r < len(right) {
+		if left[l] <= right[r] {
+			merged = append(merged, left[l])
+			l++
 		} else {
-			result = append(result, right[j])
-			j++
+			merged = append(merged, right[r])
+			r++
 		}
 	}
 	// Append any remaining elements
-	result = append(result, left[i:]...)
-	result = append(result, right[j:]...)
-	return result
+	merged = append(merged, left[i:]...)
+	merged = append(merged, right[j:]...)
+	return merged
 }
 
 /*
@@ -75,4 +77,39 @@ func mergeInPlace(slice []int, left, mid, right int) {
 			j++
 		}
 	}
+}
+
+/*
+ParallelMergeSort sorts an integer slice in ascending order using Parallel Merge Sort algorithm.
+It utilizes goroutines to parallelize the sorting process, which can improve performance.
+Time complexity: O(n log n), where n is the length of the slice.
+The algorithm recursively divides the input slice into halves and sorts each half concurrently using goroutines.
+Then, it merges the sorted halves.
+*/
+func ParallelMergeSort(slice []int) []int {
+	if len(slice) <= 1 {
+		return slice
+	}
+
+	mid := len(slice) / 2
+
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	var left, right []int // Define left and right slices outside goroutines
+
+	go func() {
+		defer wg.Done()
+		left = ParallelMergeSort(slice[:mid]) // Sort left half concurrently
+	}()
+
+	go func() {
+		defer wg.Done()
+		right = ParallelMergeSort(slice[mid:]) // Sort right half concurrently
+	}()
+
+	wg.Wait()
+
+	// Merge the sorted left and right halves
+	return merge(left, right)
 }
