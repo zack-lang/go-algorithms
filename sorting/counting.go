@@ -1,7 +1,7 @@
 package sorting
 
 /*
-CountingSort sorts an integer slice in ascending order using the Bingo Sort algorithm.
+CountingSort sorts an integer slice in ascending order using the Counting Sort algorithm.
 It counts the occurrences of each number in the input slice using a bucket array,
 then reconstructs the sorted array based on the counts.
 Time complexity: O(n+k) where n is number of elements and k is range.
